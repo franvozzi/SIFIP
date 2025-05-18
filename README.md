@@ -24,28 +24,6 @@ Ayudar a personas no especializadas en finanzas a planificar sus ingresos, contr
 - Recomendaciones de ahorro e inversión
 - Almacenamiento local de los datos (offline)
 
-## 📁 Estructura del proyecto
-
-```
-sifip/
-├── src/
-│   ├── main/java/sifip/
-│   │   ├── controller/
-│   │   ├── service/
-│   │   ├── dao/
-│   │   └── model/
-│   └── resources/
-├── db/
-│   ├── create_tables.sql
-│   └── ejemplo_inserciones.sql
-├── docs/
-│   ├── diagramas/
-│   └── ejemplos_sql/
-├── README.md
-├── .gitignore
-
-```
-
 ## 🚀 Cómo ejecutar el sistema
 
 1. Clonar el repositorio:
