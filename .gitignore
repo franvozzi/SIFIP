@@ -1,0 +1,14 @@
+# Archivos de Java
+*.class
+
+# Eclipse / IntelliJ / NetBeans
+*.iml
+*.ipr
+*.iws
+.idea/
+target/
+bin/
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
