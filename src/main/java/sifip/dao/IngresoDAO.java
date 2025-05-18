@@ -3,20 +3,20 @@ package sifip.dao;
 import sifip.model.Ingreso;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.DriverManager;
 
 public class IngresoDAO {
 
-    private final String url = "jdbc:mysql://localhost:3306/sifip_db";
-    private final String user = "root";
-    private final String password = "";
+    private static final String URL = "jdbc:mysql://localhost:3306/sifip_db";
+    private static final String USER = "root";
+    private static final String PASSWORD = ""; // Reemplazar si corresponde
 
     public boolean save(Ingreso ingreso) {
         String sql = "INSERT INTO Ingreso (monto, descripcion, periodicidad, fecha, id_usuario) VALUES (?, ?, ?, ?, ?)";
 
-        try (Connection conn = DriverManager.getConnection(url, user, password);
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setDouble(1, ingreso.getMonto());

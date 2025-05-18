@@ -1,14 +1,34 @@
-# Archivos de Java
+# Java
 *.class
 
-# Eclipse / IntelliJ / NetBeans
-*.iml
-*.ipr
-*.iws
-.idea/
-target/
-bin/
+# Logs
+*.log
 
-# Archivos de sistema
+# Compiled source
+bin/
+out/
+
+# IntelliJ
+.idea/
+*.iml
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# VSCode
+.vscode/
+
+# OS-generated
 .DS_Store
 Thumbs.db
+
+# Maven/Gradle
+/target/
+/.gradle/
+build/
+
+# Misc
+*.db
+*.sql~
