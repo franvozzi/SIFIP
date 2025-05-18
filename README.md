@@ -40,6 +40,41 @@ javac -d bin src/main/java/sifip/**/*.java
 
 4. Ejecutar la clase `Main.java`
 
+## Estructura del proyecto
+## 📁 Estructura del proyecto
+```
+SIFIP/
+├── src/
+│ └── main/
+│ └── java/
+│ └── sifip/
+│ ├── Main.java # Punto de entrada del sistema
+│ ├── controller/ # Controladores de CLI
+│ │ ├── IngresoController.java
+│ │ └── GastoController.java
+│ ├── service/ # Lógica de negocio
+│ │ ├── IngresoService.java
+│ │ └── GastoService.java
+│ ├── dao/ # Acceso a datos (JDBC)
+│ │ ├── DBConfig.java
+│ │ ├── IngresoDAO.java
+│ │ └── GastoDAO.java
+│ └── model/ # Clases de dominio
+│ ├── Ingreso.java
+│ └── Gasto.java
+│
+├── db/ # Scripts SQL
+│ ├── create_tables.sql
+│ └── ejemplo_inserciones.sql
+│
+├── docs/ # Diagramas y documentación técnica
+│ └── diagramas/
+│
+├── .gitignore # Archivos a ignorar por Git
+├── README.md # Documentación del proyecto
+└── LICENSE # Licencia del proyecto
+```
+
 ## ✍️ Autor
 
 Francisco Vozzi
