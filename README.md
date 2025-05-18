@@ -42,7 +42,7 @@ sifip/
 │   └── ejemplos_sql/
 ├── README.md
 ├── .gitignore
-└── pom.xml (si se usa Maven)
+
 ```
 
 ## 🚀 Cómo ejecutar el sistema
