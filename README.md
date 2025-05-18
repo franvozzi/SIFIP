@@ -2,6 +2,7 @@
 <div align="center">
   <img src="SIFIP.png" width="30%">
 </div>
+
 SIFIP es una aplicación de consola desarrollada en Java que permite a los usuarios gestionar de forma local sus finanzas personales. Está orientado al contexto argentino e incluye funcionalidades para registrar ingresos, gastos, activos financieros y recibir recomendaciones de ahorro.
 
 ## 🎯 Objetivo
@@ -23,28 +24,6 @@ Ayudar a personas no especializadas en finanzas a planificar sus ingresos, contr
 - Recomendaciones de ahorro e inversión
 - Almacenamiento local de los datos (offline)
 
-## 📁 Estructura del proyecto
-
-```
-sifip/
-├── src/
-│   ├── main/java/sifip/
-│   │   ├── controller/
-│   │   ├── service/
-│   │   ├── dao/
-│   │   └── model/
-│   └── resources/
-├── db/
-│   ├── create_tables.sql
-│   └── ejemplo_inserciones.sql
-├── docs/
-│   ├── diagramas/
-│   └── ejemplos_sql/
-├── README.md
-├── .gitignore
-└── pom.xml (si se usa Maven)
-```
-
 ## 🚀 Cómo ejecutar el sistema
 
 1. Clonar el repositorio:
@@ -61,7 +40,42 @@ javac -d bin src/main/java/sifip/**/*.java
 
 4. Ejecutar la clase `Main.java`
 
+## Estructura del proyecto
+## 📁 Estructura del proyecto
+```
+SIFIP/
+├── src/
+│ └── main/
+│ └── java/
+│ └── sifip/
+│ ├── Main.java # Punto de entrada del sistema
+│ ├── controller/ # Controladores de CLI
+│ │ ├── IngresoController.java
+│ │ └── GastoController.java
+│ ├── service/ # Lógica de negocio
+│ │ ├── IngresoService.java
+│ │ └── GastoService.java
+│ ├── dao/ # Acceso a datos (JDBC)
+│ │ ├── DBConfig.java
+│ │ ├── IngresoDAO.java
+│ │ └── GastoDAO.java
+│ └── model/ # Clases de dominio
+│ ├── Ingreso.java
+│ └── Gasto.java
+│
+├── db/ # Scripts SQL
+│ ├── create_tables.sql
+│ └── ejemplo_inserciones.sql
+│
+├── docs/ # Diagramas y documentación técnica
+│ └── diagramas/
+│
+├── .gitignore # Archivos a ignorar por Git
+├── README.md # Documentación del proyecto
+└── LICENSE # Licencia del proyecto
+```
+
 ## ✍️ Autor
 
 Francisco Vozzi
-Universidad Empresarial Siglo 21 – Mayo 2025
+Universidad Empresarial Siglo 21
