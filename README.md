@@ -61,10 +61,6 @@ javac -d bin src/main/java/sifip/**/*.java
 
 4. Ejecutar la clase `Main.java`
 
-## 📝 Licencia
-
-Este proyecto está disponible bajo la Licencia MIT.
-
 ## ✍️ Autor
 
 Francisco Vozzi
