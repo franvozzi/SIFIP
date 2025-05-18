@@ -64,4 +64,4 @@ javac -d bin src/main/java/sifip/**/*.java
 ## ✍️ Autor
 
 Francisco Vozzi
-Universidad Empresarial Siglo 21 – Mayo 2025
+Universidad Empresarial Siglo 21
