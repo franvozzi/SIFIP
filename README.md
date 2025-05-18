@@ -1,5 +1,7 @@
 # SIFIP - Sistema de Planificación Financiera Personal
-
+<div align="center">
+  <img src="SIFIP.png" width="30%">
+</div>
 SIFIP es una aplicación de consola desarrollada en Java que permite a los usuarios gestionar de forma local sus finanzas personales. Está orientado al contexto argentino e incluye funcionalidades para registrar ingresos, gastos, activos financieros y recibir recomendaciones de ahorro.
 
 ## 🎯 Objetivo
@@ -58,10 +60,6 @@ javac -d bin src/main/java/sifip/**/*.java
 ```
 
 4. Ejecutar la clase `Main.java`
-
-## 📝 Licencia
-
-Este proyecto está disponible bajo la Licencia MIT.
 
 ## ✍️ Autor
 
