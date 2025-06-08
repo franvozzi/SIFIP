@@ -5,7 +5,10 @@ import sifip.model.Gasto;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GastoDAO {
 
@@ -32,5 +35,34 @@ public class GastoDAO {
             System.err.println("Error al guardar el gasto: " + e.getMessage());
             return false;
         }
+    }
+
+    public List<Gasto> obtenerGastosPorUsuario(int idUsuario) {
+        List<Gasto> gastos = new ArrayList<>();
+        String sql = "SELECT * FROM Gasto WHERE id_usuario = ?";
+
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, idUsuario);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Gasto gasto = new Gasto(
+                    rs.getDouble("monto"),
+                    rs.getString("descripcion"),
+                    rs.getString("categoria"),
+                    rs.getDate("fecha").toLocalDate(),
+                    rs.getInt("id_usuario")
+                );
+                gasto.setId(rs.getInt("id"));
+                gastos.add(gasto);
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error al obtener gastos: " + e.getMessage());
+        }
+
+        return gastos;
     }
 } 

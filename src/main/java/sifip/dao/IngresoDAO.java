@@ -6,6 +6,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class IngresoDAO {
 
@@ -32,5 +35,34 @@ public class IngresoDAO {
             System.err.println("Error al guardar el ingreso: " + e.getMessage());
             return false;
         }
+    }
+
+    public List<Ingreso> obtenerIngresosPorUsuario(int idUsuario) {
+        List<Ingreso> ingresos = new ArrayList<>();
+        String sql = "SELECT * FROM Ingreso WHERE id_usuario = ?";
+
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, idUsuario);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Ingreso ingreso = new Ingreso(
+                    rs.getDouble("monto"),
+                    rs.getString("descripcion"),
+                    rs.getString("periodicidad"),
+                    rs.getDate("fecha").toLocalDate(),
+                    rs.getInt("id_usuario")
+                );
+                ingreso.setId(rs.getInt("id"));
+                ingresos.add(ingreso);
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error al obtener ingresos: " + e.getMessage());
+        }
+
+        return ingresos;
     }
 } 

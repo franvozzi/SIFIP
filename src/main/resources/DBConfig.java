@@ -1,4 +1,4 @@
-package sifip.dao;
+package main.resources;
 
 import java.io.FileInputStream;
 import java.util.Properties;
