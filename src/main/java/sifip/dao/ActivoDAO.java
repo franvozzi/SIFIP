@@ -9,9 +9,9 @@ import java.sql.SQLException;
 
 public class ActivoDAO {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/sifip_db";
-    private static final String USER = "root";
-    private static final String PASSWORD = "";
+    private static final String URL = "jdbc:postgresql://localhost:5432/sifip";
+    private static final String USER = "franvozzi";
+    private static final String PASSWORD = "fran";
 
     public boolean save(Activo activo) {
         String sql = "INSERT INTO Activo (nombre, tipo, cantidad, precio_inicial, precio_actual, fecha, id_usuario) VALUES (?, ?, ?, ?, ?, ?, ?)";

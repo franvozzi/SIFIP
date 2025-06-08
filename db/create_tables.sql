@@ -1,10 +1,10 @@
 CREATE TABLE Usuario (
-  id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+  id_usuario SERIAL PRIMARY KEY,
   nombre VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE Ingreso (
-  id_ingreso INT AUTO_INCREMENT PRIMARY KEY,
+  id_ingreso SERIAL PRIMARY KEY,
   monto DECIMAL(12,2) NOT NULL,
   descripcion VARCHAR(255),
   periodicidad VARCHAR(50),
@@ -14,7 +14,7 @@ CREATE TABLE Ingreso (
 );
 
 CREATE TABLE Gasto (
-  id_gasto INT AUTO_INCREMENT PRIMARY KEY,
+  id_gasto SERIAL PRIMARY KEY,
   monto DECIMAL(12,2) NOT NULL,
   descripcion VARCHAR(255),
   categoria VARCHAR(50),
@@ -24,7 +24,7 @@ CREATE TABLE Gasto (
 );
 
 CREATE TABLE Activo (
-  id_activo INT AUTO_INCREMENT PRIMARY KEY,
+  id_activo SERIAL PRIMARY KEY,
   nombre VARCHAR(100) NOT NULL,
   tipo VARCHAR(50),
   cantidad DECIMAL(10,4),
@@ -36,7 +36,7 @@ CREATE TABLE Activo (
 );
 
 CREATE TABLE Configuracion (
-  id_configuracion INT AUTO_INCREMENT PRIMARY KEY,
+  id_configuracion SERIAL PRIMARY KEY,
   umbral_ahorro DECIMAL(12,2),
   recomendaciones_activadas BOOLEAN,
   id_usuario INT UNIQUE,

@@ -12,9 +12,9 @@ import java.util.List;
 
 public class IngresoDAO {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/sifip_db";
-    private static final String USER = "root";
-    private static final String PASSWORD = ""; // Reemplazar si corresponde
+    private static final String URL = "jdbc:postgresql://localhost:5432/sifip";
+    private static final String USER = "franvozzi";
+    private static final String PASSWORD = "fran";
 
     public boolean save(Ingreso ingreso) {
         String sql = "INSERT INTO Ingreso (monto, descripcion, periodicidad, fecha, id_usuario) VALUES (?, ?, ?, ?, ?)";

@@ -4,18 +4,18 @@
   <img src="SIFIP.png" width="30%">
 </div>
 
-Prototipo de un sistema de gestión de finanzas personales desarrollado en Java con persistencia en MySQL, diseñado para facilitar la planificación financiera en el contexto económico argentino. 
+Prototipo de un sistema de gestión de finanzas personales desarrollado en Java con persistencia en PostgreSQL, diseñado para facilitar la planificación financiera en el contexto económico argentino. 
 Este proyecto forma parte del Seminario de Práctica de Informática, Facultad de Informática, Universidad Empresarial Siglo 21.
 
 ## Descripción
 
-El SIFIP permite a los usuarios registrar ingresos y gastos, seguir el rendimiento de inversiones (acciones, criptomonedas, fondos comunes de inversión, plazos fijos), generar reportes financieros y recibir recomendaciones personalizadas. El prototipo inicial se implementa con una interfaz en consola y utiliza solo Java estándar (JDK) y MySQL, sin frameworks externos, según las restricciones del proyecto.
+El SIFIP permite a los usuarios registrar ingresos y gastos, seguir el rendimiento de inversiones (acciones, criptomonedas, fondos comunes de inversión, plazos fijos), generar reportes financieros y recibir recomendaciones personalizadas. El prototipo inicial se implementa con una interfaz en consola y utiliza solo Java estándar (JDK) y PostgreSQL, sin frameworks externos, según las restricciones del proyecto.
 
 ## Requisitos
 
 - **JDK**: Versión 11 o superior (verificar con `java -version`)
-- **MySQL**: Versión 8.0 o superior (verificar con `mysql --version`)
-- **Driver JDBC de MySQL**: Archivo `mysql-connector-java-8.0.33.jar` (descargable desde https://dev.mysql.com/downloads/connector/j/) o configurado vía Maven
+- **PostgreSQL**: Versión 14 o superior (verificar con `psql --version`)
+- **Driver JDBC de PostgreSQL**: Archivo `postgresql-42.7.5.jar` (incluido en el proyecto)
 - Sistema operativo con terminal (Linux, macOS, o Windows con WSL)
 
 ## Configuración
@@ -29,60 +29,59 @@ cd SIFIP
 
 ### Paso 2: Configurar la Base de Datos
 
-1. Inicia MySQL y crea la base de datos:
-   ```sql
-   CREATE DATABASE sifip_db;
+1. Inicia PostgreSQL y crea la base de datos:
+   ```bash
+   createdb sifip
    ```
 
 2. Ejecuta el script para crear las tablas:
    ```bash
-   mysql -u root -p sifip_db < db/create_tables.sql
+   psql sifip -f db/create_tables.sql
    ```
-   Ingresa tu contraseña de MySQL cuando se solicite.
 
 3. (Opcional) Carga datos de prueba ejecutando:
    ```bash
-   mysql -u root -p sifip_db < db/ejemplo_inserciones.sql
+   psql sifip -f db/ejemplo_inserciones.sql
    ```
 
 ### Paso 3: Configurar las Credenciales
 
-Edita el archivo `src/main/resources/config.properties` con tus credenciales de MySQL:
+Edita el archivo `src/main/resources/config.properties` con tus credenciales de PostgreSQL:
 
 ```properties
-db.url=jdbc:mysql://localhost:3306/sifip_db
-db.user=root
-db.password=tu_contraseña
+db.url=jdbc:postgresql://localhost:5432/sifip
+db.user=franvozzi
+db.password=fran
 ```
 
-Reemplaza `tu_contraseña` con la contraseña de tu usuario MySQL.
-
-### Paso 4: Configurar el Driver JDBC
-
-Descarga `mysql-connector-java-8.0.33.jar` desde https://dev.mysql.com/downloads/connector/j/ y colócalo en una carpeta `lib/` en el directorio raíz del proyecto.
-
-Alternativamente, si usas Maven, agrega la dependencia en un `pom.xml`:
-
-```xml
-<dependency>
-    <groupId>mysql</groupId>
-    <artifactId>mysql-connector-java</artifactId>
-    <version>8.0.33</version>
-</dependency>
-```
-
-### Paso 5: Compilar y Ejecutar
+### Paso 4: Compilar y Ejecutar
 
 1. Compila el proyecto:
    ```bash
-   javac -cp .:lib/mysql-connector-java-8.0.33.jar src/main/java/sifip/*.java src/main/java/sifip/controller/*.java src/main/java/sifip/dao/*.java src/main/java/sifip/model/*.java src/main/java/sifip/service/*.java
+   javac -cp .:lib/postgresql-42.7.5.jar -d . src/main/java/sifip/*.java src/main/java/sifip/controller/*.java src/main/java/sifip/dao/*.java src/main/java/sifip/model/*.java src/main/java/sifip/service/*.java
    ```
-   En Windows, usa `;` en lugar de `:` (ej., `-cp .;lib/mysql-connector-java-8.0.33.jar`).
+   En Windows, usa `;` en lugar de `:` (ej., `-cp .;lib/postgresql-42.7.5.jar`).
 
 2. Ejecuta la aplicación:
    ```bash
-   java -cp .:lib/mysql-connector-java-8.0.33.jar sifip.Main
+   java -cp .:lib/postgresql-42.7.5.jar sifip.Main
    ```
+
+## Nota Técnica: Elección de PostgreSQL
+
+El proyecto utiliza PostgreSQL en lugar de MySQL por las siguientes razones:
+
+1. **Compatibilidad con Mac M1**: PostgreSQL ofrece mejor estabilidad y rendimiento en arquitecturas ARM (M1/M2) de Apple, evitando los crashes y bugs frecuentes que se presentan con MySQL Workbench en estos sistemas.
+
+2. **Robustez**: PostgreSQL es conocido por su robustez y cumplimiento con los estándares SQL, lo que garantiza mayor confiabilidad en el manejo de datos.
+
+3. **Características Avanzadas**: PostgreSQL ofrece características avanzadas como:
+   - Mejor manejo de transacciones
+   - Tipos de datos más ricos
+   - Mejor soporte para JSON
+   - Mejor manejo de concurrencia
+
+4. **Comunidad Activa**: PostgreSQL tiene una comunidad muy activa y un excelente soporte para diferentes plataformas.
 
 ## Funcionalidades del Prototipo
 
@@ -93,7 +92,7 @@ El prototipo inicial implementa las siguientes características:
 - **Registro y Actualización de Activos (RF3, RF6)**: Registrar activos financieros y actualizar precios para calcular rendimientos
 - **Cálculo de Balance (RF4)**: Mostrar el balance financiero (ingresos - gastos)
 - **Reporte de Gastos por Categoría (RF5)**: Generar un reporte de gastos agrupados por categoría
-- **Persistencia en MySQL**: Almacenar todos los datos en una base de datos local
+- **Persistencia en PostgreSQL**: Almacenar todos los datos en una base de datos local
 
 ## Estructura del Repositorio
 
@@ -110,7 +109,7 @@ SIFIP/
 ├── src/main/
 │   ├── java/sifip/
 │   │   ├── controller/     # Controladores para la interfaz
-│   │   ├── dao/           # Clases de acceso a datos para MySQL
+│   │   ├── dao/           # Clases de acceso a datos para PostgreSQL
 │   │   ├── model/         # Clases modelo (Ingreso, Gasto, Activo, Reporte)
 │   │   ├── service/       # Clases de servicio para la lógica de negocio
 │   │   └── Main.java      # Clase principal
@@ -118,7 +117,7 @@ SIFIP/
 │       └── config.properties
 ├── test/                   # Carpeta para pruebas unitarias (en desarrollo)
 ├── lib/                    # Driver JDBC
-│   └── mysql-connector-java-8.0.33.jar
+│   └── postgresql-42.7.5.jar
 ├── .gitignore
 └── README.md
 ```
@@ -143,13 +142,13 @@ Para verificar que el sistema funciona correctamente:
    - Agrega activos y actualiza precios
    - Genera reportes de gastos por categoría
    - Verifica el cálculo de balance
-3. Confirma que los datos persistan en MySQL consultando las tablas directamente
+3. Confirma que los datos persistan en PostgreSQL consultando las tablas directamente
 
 ## Notas
 
-- El proyecto usa solo Java estándar y MySQL, sin frameworks externos, como se especifica en las restricciones
+- El proyecto usa solo Java estándar y PostgreSQL, sin frameworks externos, como se especifica en las restricciones
 - La interfaz es en consola (Java Scanner) y funciona offline
-- Última actualización: 08 de junio de 2025
+- Última actualización: 09 de junio de 2025
 
 ---
 
