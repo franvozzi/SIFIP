@@ -56,6 +56,8 @@ db.password=fran
 
 ### Paso 4: Compilar y Ejecutar
 
+**Importante:** El archivo `lib/postgresql-42.7.5.jar` (driver JDBC de PostgreSQL) no está incluido en el repositorio por su tamaño. Debes descargarlo manualmente desde https://jdbc.postgresql.org/download.html y colocarlo en la carpeta `lib/` antes de compilar y ejecutar el proyecto.
+
 1. Compila el proyecto:
    ```bash
    javac -cp .:lib/postgresql-42.7.5.jar -d . src/main/java/sifip/*.java src/main/java/sifip/controller/*.java src/main/java/sifip/dao/*.java src/main/java/sifip/model/*.java src/main/java/sifip/service/*.java
@@ -148,6 +150,7 @@ Para verificar que el sistema funciona correctamente:
 
 - El proyecto usa solo Java estándar y PostgreSQL, sin frameworks externos, como se especifica en las restricciones
 - La interfaz es en consola (Java Scanner) y funciona offline
+- **El archivo `lib/postgresql-42.7.5.jar` debe ser descargado manualmente y no está en el repositorio.**
 - Última actualización: 09 de junio de 2025
 
 ---
