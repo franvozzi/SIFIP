@@ -132,7 +132,7 @@ Ver `docs/diagramas/` para diagramas UML:
 
 ## Documentación
 
-Consulta el archivo `docs/Trabajo_Practico_1_SEMINARIO_VOZZI.docx` o `.pdf` para detalles completos del proyecto, incluyendo la propuesta de solución, requerimientos y justificaciones.
+Consulta el archivo `docs/Trabajo_PracticoSEMINARIO_VOZZI.docx` o `.pdf` para detalles completos del proyecto, incluyendo la propuesta de solución, requerimientos y justificaciones.
 
 ## Pruebas
 
