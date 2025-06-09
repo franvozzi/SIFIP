@@ -138,12 +138,6 @@ SIFIP/
 └── README.md
 ```
 
-## Diagramas
-
-Ver `docs/diagramas/` para diagramas UML:
-- `SIFIP.png`: Diagrama de casos de uso
-- `dominio.png`: Diagrama de dominio (entidades y relaciones)
-
 
 ## Pruebas
 
