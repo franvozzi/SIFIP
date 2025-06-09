@@ -5,69 +5,88 @@
 </div>
 
 Prototipo de un sistema de gestión de finanzas personales desarrollado en Java con persistencia en PostgreSQL, diseñado para facilitar la planificación financiera en el contexto económico argentino. 
-Este proyecto forma parte del Seminario de Práctica de Informática, Facultad de Informática, Universidad Empresarial Siglo 21.
+Este proyecto forma parte del Seminario de Práctica de Informática,Universidad Empresarial Siglo 21.
 
 ## Descripción
 
 El SIFIP permite a los usuarios registrar ingresos y gastos, seguir el rendimiento de inversiones (acciones, criptomonedas, fondos comunes de inversión, plazos fijos), generar reportes financieros y recibir recomendaciones personalizadas. El prototipo inicial se implementa con una interfaz en consola y utiliza solo Java estándar (JDK) y PostgreSQL, sin frameworks externos, según las restricciones del proyecto.
 
-## Requisitos
+## Guía Rápida de Ejecución
 
-- **JDK**: Versión 11 o superior (verificar con `java -version`)
-- **PostgreSQL**: Versión 14 o superior (verificar con `psql --version`)
-- **Driver JDBC de PostgreSQL**: Archivo `postgresql-42.7.5.jar` (incluido en el proyecto)
-- Sistema operativo con terminal (Linux, macOS, o Windows con WSL)
+### 1. Requisitos Previos
+- Java JDK 11 o superior
+- PostgreSQL 14 o superior
+- Git
 
-## Configuración
+### 2. Configuración Inicial
 
-### Paso 1: Clonar el Repositorio
-
-```bash
-git clone https://github.com/franvozzi/SIFIP.git
-cd SIFIP
-```
-
-### Paso 2: Configurar la Base de Datos
-
-1. Inicia PostgreSQL y crea la base de datos:
+1. **Clonar el repositorio**
    ```bash
-   createdb sifip
+   git clone https://github.com/franvozzi/SIFIP.git
+   cd SIFIP
    ```
 
-2. Ejecuta el script para crear las tablas:
+2. **Configurar PostgreSQL**
    ```bash
+   # Crear la base de datos
+   createdb sifip
+   
+   # Crear las tablas
    psql sifip -f db/create_tables.sql
    ```
 
-3. (Opcional) Carga datos de prueba ejecutando:
+3. **Verificar configuración**
+   - Asegúrate que el archivo `src/main/resources/config.properties` tenga las credenciales correctas:
+     ```properties
+     db.url=jdbc:postgresql://localhost:5432/sifip
+     db.user=franvozzi
+     db.password=fran
+     ```
+
+### 3. Compilar y Ejecutar
+
+1. **Compilar el proyecto**
    ```bash
-   psql sifip -f db/ejemplo_inserciones.sql
+   # En macOS/Linux:
+   javac -cp "lib/*:src/main/java" src/main/java/sifip/Main.java
+   
+   # En Windows:
+   javac -cp "lib/*;src/main/java" src/main/java/sifip/Main.java
    ```
 
-### Paso 3: Configurar las Credenciales
-
-Edita el archivo `src/main/resources/config.properties` con tus credenciales de PostgreSQL:
-
-```properties
-db.url=jdbc:postgresql://localhost:5432/sifip
-db.user=franvozzi
-db.password=fran
-```
-
-### Paso 4: Compilar y Ejecutar
-
-**Importante:** El archivo `lib/postgresql-42.7.5.jar` (driver JDBC de PostgreSQL) no está incluido en el repositorio por su tamaño. Debes descargarlo manualmente desde https://jdbc.postgresql.org/download.html y colocarlo en la carpeta `lib/` antes de compilar y ejecutar el proyecto.
-
-1. Compila el proyecto:
+2. **Ejecutar la aplicación**
    ```bash
-   javac -cp .:lib/postgresql-42.7.5.jar -d . src/main/java/sifip/*.java src/main/java/sifip/controller/*.java src/main/java/sifip/dao/*.java src/main/java/sifip/model/*.java src/main/java/sifip/service/*.java
+   # En macOS/Linux:
+   java -cp "lib/*:src/main/java" sifip.Main
+   
+   # En Windows:
+   java -cp "lib/*;src/main/java" sifip.Main
    ```
-   En Windows, usa `;` en lugar de `:` (ej., `-cp .;lib/postgresql-42.7.5.jar`).
 
-2. Ejecuta la aplicación:
-   ```bash
-   java -cp .:lib/postgresql-42.7.5.jar sifip.Main
-   ```
+### 4. Uso de la Aplicación
+
+Una vez ejecutada, la aplicación mostrará un menú con las siguientes opciones:
+1. Registrar ingreso
+2. Registrar gasto
+3. Registrar activo
+0. Salir
+
+Selecciona una opción ingresando el número correspondiente.
+
+### Solución de Problemas Comunes
+
+1. **Error de conexión a la base de datos**
+   - Verifica que PostgreSQL esté corriendo
+   - Confirma las credenciales en `config.properties`
+   - Asegúrate que la base de datos `sifip` existe
+
+2. **Error de compilación**
+   - Verifica que el JDK esté instalado correctamente
+   - Confirma que el driver PostgreSQL (`lib/postgresql-42.7.5.jar`) está presente
+
+3. **Error de ejecución**
+   - Asegúrate de estar en el directorio correcto
+   - Verifica que la clase Main.class se haya generado
 
 ## Nota Técnica: Elección de PostgreSQL
 
