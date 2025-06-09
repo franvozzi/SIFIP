@@ -46,6 +46,7 @@ El SIFIP permite a los usuarios registrar ingresos y gastos, seguir el rendimien
 ### 3. Compilar y Ejecutar
 
 1. **Compilar el proyecto**
+   - Descargar y agregar driver de postgre: "postgresql-42.7.5.jar" y ubicarlo en la carpeta del proyecto.
    ```bash
    # En macOS/Linux:
    javac -cp "lib/*:src/main/java" src/main/java/sifip/Main.java
