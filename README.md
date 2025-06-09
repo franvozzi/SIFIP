@@ -149,9 +149,6 @@ Ver `docs/diagramas/` para diagramas UML:
 - `SIFIP.png`: Diagrama de casos de uso
 - `dominio.png`: Diagrama de dominio (entidades y relaciones)
 
-## Documentación
-
-Consulta el archivo `docs/Trabajo_PracticoSEMINARIO_VOZZI.docx` o `.pdf` para detalles completos del proyecto, incluyendo la propuesta de solución, requerimientos y justificaciones.
 
 ## Pruebas
 
