@@ -96,13 +96,7 @@ El proyecto utiliza PostgreSQL en lugar de MySQL por las siguientes razones:
 
 2. **Robustez**: PostgreSQL es conocido por su robustez y cumplimiento con los estándares SQL, lo que garantiza mayor confiabilidad en el manejo de datos.
 
-3. **Características Avanzadas**: PostgreSQL ofrece características avanzadas como:
-   - Mejor manejo de transacciones
-   - Tipos de datos más ricos
-   - Mejor soporte para JSON
-   - Mejor manejo de concurrencia
-
-4. **Comunidad Activa**: PostgreSQL tiene una comunidad muy activa y un excelente soporte para diferentes plataformas.
+3. **Comunidad Activa**: PostgreSQL tiene una comunidad muy activa y un excelente soporte para diferentes plataformas.
 
 ## Funcionalidades del Prototipo
 
