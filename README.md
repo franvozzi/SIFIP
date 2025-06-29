@@ -106,14 +106,15 @@ db.password=tu_password
 
 ### 3. Compilar y Ejecutar
 
-1. **Compilar el proyecto**
-   ```bash
-   # En macOS/Linux:
-   javac -cp "lib/*:src/main/java" src/main/java/sifip/Main.java
-   
-   # En Windows:
-   javac -cp "lib/*;src/main/java" src/main/java/sifip/Main.java
-   ```
+#### 🔨 Compilar el proyecto
+- Descargar y agregar el driver de PostgreSQL: "postgresql-42.7.5.jar" y ubicarlo en la carpeta `lib` del proyecto.
+```bash
+# En macOS/Linux:
+javac -cp "lib/*:src/main/java" src/main/java/sifip/Main.java
+
+# En Windows:
+javac -cp "lib/*;src/main/java" src/main/java/sifip/Main.java
+```
 
 #### ▶️ Ejecutar la aplicación
 ```bash
