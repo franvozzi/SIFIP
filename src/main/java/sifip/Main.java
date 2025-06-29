@@ -11,7 +11,7 @@ import java.util.Scanner;
 import java.util.InputMismatchException;
 
 /**
- * SIFIP - Sistema de Finanzas Personales
+ * SIFIP - Sistema de Planificación Financiera
  * 
  * Esta es la clase principal que inicia la aplicación de gestión financiera personal.
  * Implementa un patrón MVC (Model-View-Controller) donde:

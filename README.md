@@ -6,7 +6,7 @@
 
 ## 📋 Descripción del Proyecto
 
-**SIFIP** es un prototipo de sistema de gestión de finanzas personales desarrollado en **Java** con persistencia en **PostgreSQL**, diseñado para facilitar la planificación financiera en el contexto económico argentino. 
+**SIFIP** es un prototipo de Sistema de Planificación Financiera  desarrollado en **Java** con persistencia en **PostgreSQL**, diseñado para facilitar la planificación financiera en el contexto económico argentino. 
 
 Este proyecto forma parte del **Seminario de Práctica de Informática** de la **Universidad Empresarial Siglo 21**.
 
