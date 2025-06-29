@@ -1,0 +1,2 @@
+# Ocultar blame para README.md
+README.md -diff 
