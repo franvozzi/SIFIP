@@ -4,6 +4,7 @@ import sifip.dao.GastoDAO;
 import sifip.model.Gasto;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public class GastoService {
 
@@ -19,7 +20,13 @@ public class GastoService {
             return false;
         }
 
-        Gasto gasto = new Gasto(monto, descripcion, categoria, fecha, idUsuario);
-        return gastoDAO.save(gasto);
+        try {
+            Gasto gasto = new Gasto((float)monto, descripcion, categoria, Date.from(fecha.atStartOfDay().toInstant(java.time.ZoneOffset.UTC)), idUsuario);
+            gastoDAO.guardar(gasto);
+            return true;
+        } catch (Exception e) {
+            System.out.println("Error al registrar gasto: " + e.getMessage());
+            return false;
+        }
     }
 } 

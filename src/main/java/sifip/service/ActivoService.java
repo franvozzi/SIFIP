@@ -4,6 +4,7 @@ import sifip.dao.ActivoDAO;
 import sifip.model.Activo;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public class ActivoService {
 
@@ -20,7 +21,14 @@ public class ActivoService {
             return false;
         }
 
-        Activo activo = new Activo(nombre, tipo, cantidad, precioInicial, precioActual, fecha, idUsuario);
-        return activoDAO.save(activo);
+        try {
+            Activo activo = new Activo(nombre, tipo, (float)cantidad, (float)precioInicial, Date.from(fecha.atStartOfDay().toInstant(java.time.ZoneOffset.UTC)), idUsuario);
+            activo.setPrecioActual((float)precioActual);
+            activoDAO.guardar(activo);
+            return true;
+        } catch (Exception e) {
+            System.out.println("Error al registrar activo: " + e.getMessage());
+            return false;
+        }
     }
 } 

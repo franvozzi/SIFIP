@@ -1,47 +1,78 @@
 package sifip.controller;
 
-import sifip.service.IngresoService;
-
-import java.time.LocalDate;
+import sifip.model.Ingreso;
+import sifip.dao.IngresoDAO;
 import java.util.Scanner;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+/**
+ * Clase IngresoController
+ * 
+ * Controlador que maneja la lógica de presentación para el registro de ingresos.
+ * Esta clase implementa el patrón MVC (Model-View-Controller) actuando como
+ * intermediario entre la interfaz de usuario (consola) y la capa de datos.
+ * 
+ * Responsabilidades principales:
+ * - Capturar entrada del usuario desde la consola
+ * - Validar y procesar los datos de entrada
+ * - Crear objetos Ingreso con los datos proporcionados
+ * - Coordinar con el DAO para persistir los datos
+ * - Proporcionar retroalimentación al usuario
+ * 
+ * Esta clase es parte de la capa de presentación y se encarga de
+ * la interacción directa con el usuario final.
+ */
 public class IngresoController {
+    // Dependencias del controlador
+    private IngresoDAO ingresoDAO = new IngresoDAO();  // Para persistir datos
+    private Scanner scanner = new Scanner(System.in);   // Para capturar entrada del usuario
 
-    private final IngresoService ingresoService;
-    private final Scanner scanner;
+    /**
+     * Registra un nuevo ingreso en el sistema
+     * 
+     * Este método:
+     * 1. Solicita al usuario los datos del ingreso
+     * 2. Valida y procesa la entrada
+     * 3. Crea un objeto Ingreso
+     * 4. Lo guarda en la base de datos
+     * 5. Confirma la operación al usuario
+     * 
+     * @throws Exception Si ocurre un error durante el registro
+     */
+    public void registrarIngreso() throws Exception {
+        // Captura de datos del ingreso desde la consola
+        
+        System.out.println("=== Registro de Nuevo Ingreso ===");
+        
+        // Captura del monto
+        System.out.println("Monto del ingreso:");
+        float monto = Float.parseFloat(scanner.nextLine());
+        
+        // Captura de la descripción
+        System.out.println("Descripción del ingreso:");
+        String descripcion = scanner.nextLine();
+        
+        // Captura de la periodicidad
+        System.out.println("Periodicidad del ingreso (ej: Mensual, Semanal, Único):");
+        String periodicidad = scanner.nextLine();
+        
+        // Captura de la fecha
+        System.out.println("Fecha del ingreso (formato: yyyy-mm-dd):");
+        String fechaStr = scanner.nextLine();
+        java.util.Date fecha = new SimpleDateFormat("yyyy-MM-dd").parse(fechaStr);
+        
+        // Captura del ID del usuario
+        System.out.println("ID del usuario:");
+        int idUsuario = Integer.parseInt(scanner.nextLine());
 
-    public IngresoController() {
-        this.ingresoService = new IngresoService();
-        this.scanner = new Scanner(System.in);
+        // Creación del objeto Ingreso con los datos capturados
+        Ingreso ingreso = new Ingreso(monto, descripcion, periodicidad, fecha, idUsuario);
+        
+        // Persistencia en la base de datos
+        ingresoDAO.guardar(ingreso);
+        
+        // Confirmación al usuario
+        System.out.println("✓ Ingreso registrado exitosamente.");
     }
-
-    public void registrarIngreso() {
-        System.out.println("\n--- Registrar Ingreso ---");
-
-        try {
-            System.out.print("Monto: ");
-            double monto = Double.parseDouble(scanner.nextLine());
-
-            System.out.print("Descripción: ");
-            String descripcion = scanner.nextLine();
-
-            System.out.print("Periodicidad (ej. mensual, ocasional): ");
-            String periodicidad = scanner.nextLine();
-
-            System.out.print("Fecha (YYYY-MM-DD): ");
-            LocalDate fecha = LocalDate.parse(scanner.nextLine());
-
-            // Por ahora se asume un único usuario con ID = 1
-            boolean exito = ingresoService.registrarIngreso(monto, descripcion, periodicidad, fecha, 1);
-
-            if (exito) {
-                System.out.println("Ingreso registrado exitosamente.\n");
-            } else {
-                System.out.println("No se pudo registrar el ingreso.\n");
-            }
-
-        } catch (Exception e) {
-            System.out.println("Error al ingresar los datos. Verifique e intente nuevamente.\n");
-        }
-    }
-} 
+}
